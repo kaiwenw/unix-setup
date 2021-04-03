@@ -1,5 +1,13 @@
 let mapleader = "m"
-autocmd BufWritePre * %s/\s\+$//e
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+vmap '' :w !pbcopy<CR><CR>
 
 set number
 set history=500
@@ -73,6 +81,13 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdcommenter'
 
+Plugin 'christoomey/vim-system-copy'
+
+Plugin 'fisadev/vim-isort'
+"let g:vim_isort_map = '<C-i>'
+"let g:vim_isort_python_version = 'python3.7'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+set clipboard=unnamed
