@@ -9,3 +9,6 @@ alias go='git checkout'
 alias gd='git diff'
 alias gs='git status'
 alias gl='git log --all --decorate --oneline --graph'
+
+
+
